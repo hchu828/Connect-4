@@ -19,11 +19,11 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
-function makeBoard(board, height=HEIGHT, width=WIDTH) {
+function makeBoard(board, height = HEIGHT, width = WIDTH) {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  for (let i = 0; i<height; i++) {
+  for (let i = 0; i < height; i++) {
     let row = [];
-    for (let j =0; j < width; j++){
+    for (let j = 0; j < width; j++) {
       row.push(null);
     }
     board.push(row);
@@ -40,7 +40,7 @@ function makeHtmlBoard() {
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
-  // TODO: add comment for this code
+  // Create cells for column identification for piece dropzone
   for (let x = 0; x < WIDTH; x++) {
     let headCell = document.createElement("td");
     headCell.setAttribute("id", x);
@@ -154,5 +154,5 @@ function checkForWin() {
   }
 }
 
-makeBoard();
+makeBoard(board, HEIGHT, WIDTH);
 makeHtmlBoard();
