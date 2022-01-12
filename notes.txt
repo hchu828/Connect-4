@@ -1,0 +1,17 @@
+setUpBoard(height, width);
+
+isGameOver(board[row][col], boardSpace);
+
+handleClick(board, playerTurn, col);	//maybe don't need to pass in board
+
+placePiece(board, playerTurn, col);
+
+
+
+
+Board = setUpBoard();
+
+while(!isGameOver){
+	handleClick;
+	placePiece;
+}
