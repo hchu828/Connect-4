@@ -19,11 +19,11 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
-function makeBoard(board, height = HEIGHT, width = WIDTH) {
+function makeBoard(board) {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  for (let i = 0; i < height; i++) {
+  for (let i = 0; i < HEIGHT; i++) {
     let row = [];
-    for (let j = 0; j < width; j++) {
+    for (let j = 0; j < WIDTH; j++) {
       row.push(null);
     }
     board.push(row);
@@ -79,6 +79,10 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const piece = document.createElement("div");
+  piece.classList.add("piece", `p${currPlayer}`);
+  const boardLoc = document.getElementById(`${y}-${x}`);
+  boardLoc.append(piece);
 }
 
 /** endGame: announce game end */
@@ -154,5 +158,5 @@ function checkForWin() {
   }
 }
 
-makeBoard(board, HEIGHT, WIDTH);
+makeBoard(board);
 makeHtmlBoard();
