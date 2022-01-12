@@ -5,7 +5,8 @@ isGameOver(board[row][col], boardSpace);
 handleClick(board, playerTurn, col);	//maybe don't need to pass in board
 
 placePiece(board, playerTurn, col);
-
+							// rows have values representing their depth,
+							// with columns being the index position of said row.
 
 
 
@@ -14,4 +15,5 @@ Board = setUpBoard();
 while(!isGameOver){
 	handleClick;
 	placePiece;
+				// 
 }
