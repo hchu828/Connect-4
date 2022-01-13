@@ -13,6 +13,7 @@ const HEIGHT = 6;
 let currPlayer = 1; // active player: 1 or 2
 
 const board = []; // array of rows, each row is array of cells  (board[y][x])
+
 const spaceCounter = [];
 
 const title = document.getElementById("title");
