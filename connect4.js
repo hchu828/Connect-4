@@ -14,7 +14,7 @@ let currPlayer = 1; // active player: 1 or 2
 
 // TODO: We may need to find a way to mututate the board to avoid global variables.
 const board = []; // array of rows, each row is array of cells  (board[y][x])
-
+const spaceCounter = [];
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
@@ -28,6 +28,13 @@ function makeBoard(board) {
     }
     board.push(row);
   }
+}
+
+function makeSpaceCounter() {
+  for (let i = 0; i < WIDTH; i++) {
+    spaceCounter.push(HEIGHT - 1);
+  }
+  console.log(spaceCounter);
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -71,8 +78,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  return (spaceCounter[x] !== -1) ? spaceCounter[x] : null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -106,6 +112,7 @@ function handleClick(evt) {
   // place piece in board and add to HTML table
   placeInTable(y, x);
   board[y][x] = currPlayer;
+  spaceCounter[x]--;
 
   // check for win
   if (checkForWin()) {
@@ -165,3 +172,4 @@ function checkForWin() {
 
 makeBoard(board);
 makeHtmlBoard();
+makeSpaceCounter();
