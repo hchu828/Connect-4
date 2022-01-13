@@ -14,7 +14,9 @@ let currPlayer = 1; // active player: 1 or 2
 
 // TODO: We may need to find a way to mututate the board to avoid global variables.
 const board = []; // array of rows, each row is array of cells  (board[y][x])
+
 const spaceCounter = [];
+
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
@@ -30,6 +32,7 @@ function makeBoard(board) {
   }
 }
 
+//TODO: COMMENT
 function makeSpaceCounter() {
   for (let i = 0; i < WIDTH; i++) {
     spaceCounter.push(HEIGHT - 1);
@@ -179,7 +182,7 @@ function checkForWin() {
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       let vert = [[y, x], [y - 1, x], [y - 2, x], [y - 3, x]];
       let diagDL = [[y, x], [y - 1, x - 1], [y - 2, x - 2], [y - 3, x - 3]];
-      let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      let diagDR = [[y, x], [y - 1, x + 1], [y - 2, x + 2], [y - 3, x + 3]];
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
