@@ -95,6 +95,9 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  let stopGame = document.getElementById("column-top");
+  stopGame.removeEventListener("click", handleClick);
+  alert(`Player ${currPlayer} wins!`);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -114,10 +117,14 @@ function handleClick(evt) {
   board[y][x] = currPlayer;
   spaceCounter[x]--;
 
-  // check for win
+
+
+  //check for win
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
   }
+
+
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
@@ -144,7 +151,19 @@ function checkForWin() {
 
     // TODO: Check four cells to see if they're all legal & all color of current
     // player
-
+    for (let i = 0; i < cells.length; i++) {
+      const boardY = cells[i][0];
+      const boardX = cells[i][1];
+      console.log("boardY: ", boardY);
+      console.log("boardX: ", boardX);
+      if (boardY > 5 || boardY < 0 || boardX > 6 || boardX < 0) {
+        return false;
+      }
+      if (board[boardY][boardX] !== currPlayer) {
+        return false;
+      }
+    }
+    return true;
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
@@ -158,9 +177,9 @@ function checkForWin() {
       // [ [y, x], [y, x], [y, x], [y, x] ]
 
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      let vert;
-      let diagDL;
-      let diagDR;
+      let vert = [[y, x], [y - 1, x], [y - 2, x], [y - 3, x]];
+      let diagDL = [[y, x], [y - 1, x - 1], [y - 2, x - 2], [y - 3, x - 3]];
+      let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
